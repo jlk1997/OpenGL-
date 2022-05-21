@@ -1,0 +1,21 @@
+﻿  Camera.cpp
+D:\openGL教学课程\骨骼动画课程系列\1 AssimpProj - 基础读取\openGLFW\Camera.cpp(96,12): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+D:\openGL教学课程\骨骼动画课程系列\1 AssimpProj - 基础读取\openGLFW\Camera.cpp(97,12): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+D:\openGL教学课程\骨骼动画课程系列\1 AssimpProj - 基础读取\openGLFW\Camera.cpp(102,17): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+D:\openGL教学课程\骨骼动画课程系列\1 AssimpProj - 基础读取\openGLFW\Camera.cpp(103,17): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+D:\openGL教学课程\骨骼动画课程系列\1 AssimpProj - 基础读取\openGLFW\Camera.cpp(105,11): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+D:\openGL教学课程\骨骼动画课程系列\1 AssimpProj - 基础读取\openGLFW\Camera.cpp(106,11): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+  ffImage.cpp
+  ffMesh.cpp
+  ffModel.cpp
+  openGLFW.cpp
+D:\openGL教学课程\骨骼动画课程系列\1 AssimpProj - 基础读取\openGLFW\openGLFW.cpp(35,59): warning C4305: “参数”: 从“double”到“T”截断
+          with
+          [
+              T=float
+          ]
+  Shader.cpp
+  正在生成代码...
+  glad.c
+LINK : warning LNK4098: 默认库“MSVCRT”与其他库的使用冲突；请使用 /NODEFAULTLIB:library
+  openGLFW.vcxproj -> D:\openGL教学课程\骨骼动画课程系列\1 AssimpProj - 基础读取\Debug\openGLFW.exe

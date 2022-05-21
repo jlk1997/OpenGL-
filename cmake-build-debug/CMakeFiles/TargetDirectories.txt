@@ -1,0 +1,3 @@
+/Users/jianglikai/CLionProjects/MODEL/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/jianglikai/CLionProjects/MODEL/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/jianglikai/CLionProjects/MODEL/cmake-build-debug/CMakeFiles/Model.dir
