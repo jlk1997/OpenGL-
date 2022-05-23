@@ -74,6 +74,12 @@ namespace FF
 		glEnableVertexAttribArray(SHADER_TEXCOORD_ANCHOR);
 		glVertexAttribPointer(SHADER_TEXCOORD_ANCHOR, 2, GL_FLOAT, GL_FALSE, sizeof(ffVertex), (void*)offsetof(ffVertex, m_texCoord));
 
+        glEnableVertexAttribArray(SHADER_BONE_WEIGHT_ANCHOR);
+        glVertexAttribPointer(SHADER_BONE_WEIGHT_ANCHOR,4,GL_FLOAT,GL_FALSE,sizeof(ffVertex),(void*)offsetof(ffVertex,m_boneWeightArr));
+
+        glEnableVertexAttribArray(SHADER_BONE_ID_ANCHOR);
+        glVertexAttribPointer(SHADER_BONE_ID_ANCHOR,4,GL_FLOAT,GL_FALSE,sizeof(ffVertex),(void*)offsetof(ffVertex,m_boneIdArr));
+
 		glBindVertexArray(0);
 	}
 }

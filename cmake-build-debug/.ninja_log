@@ -1,11 +1,12 @@
 # ninja log v5
 6	1410	1652126540772622703	CMakeFiles/Model.dir/main.cpp.o	e22f8b9e60dfdd6b
-3894	4189	1653035118786704766	Model	e273f6da0f50d81c
-28	3894	1653035118482107740	CMakeFiles/Model.dir/ModelLoad/ffModel.cpp.o	d91ba2ca1f8d1ee1
+2306	2459	1653239453930721396	Model	16d15a155c376407
+27	7806	1653225058234008514	CMakeFiles/Model.dir/ModelLoad/ffModel.cpp.o	d91ba2ca1f8d1ee1
 7	2141	1652815163590294624	CMakeFiles/Model.dir/ModelLoad/Camera.cpp.o	95f8df961481b222
 10	165	1652815299384698354	CMakeFiles/Model.dir/glad.c.o	fae9354b6da41816
-24	1738	1652945135087586511	CMakeFiles/Model.dir/ModelLoad/ffMesh.cpp.o	1b212331dcb791b
+27	7582	1653225058009079030	CMakeFiles/Model.dir/ModelLoad/ffMesh.cpp.o	1b212331dcb791b
 9	2630	1652815164083489061	CMakeFiles/Model.dir/ModelLoad/IO.cpp.o	28060947697a2bd1
 10	2161	1652815163611523628	CMakeFiles/Model.dir/ModelLoad/Shader.cpp.o	4adbad2cbf868acc
-18	2304	1653034709612627655	CMakeFiles/Model.dir/ModelLoad/openGLFW.cpp.o	d84f43397ccfba99
+7	1562	1653225298647554152	CMakeFiles/Model.dir/ModelLoad/openGLFW.cpp.o	d84f43397ccfba99
 27	3823	1653035118415361450	CMakeFiles/Model.dir/ModelLoad/ffImage.cpp.o	3489372686467f52
+11	2306	1653239453771565998	CMakeFiles/Model.dir/ModelLoad/ffBone.cpp.o	9c27b0c47bdc029b

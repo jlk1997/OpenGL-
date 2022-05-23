@@ -7,7 +7,10 @@
 #include"assimp/postprocess.h"
 #include"ffImage.h"
 #include"ffMesh.h"
+#include "ffBone.h"
 
+
+#define MAX_BONE_WEIGHTS 4
 namespace FF
 {
 	class ffModel
@@ -22,6 +25,16 @@ namespace FF
 		std::vector<ffMesh>			m_meshVec;
 		std::string					m_dir;
 
+        /*
+         * ----骨骼动画开始@！！！！
+         */
+        std::map<std::string,ffBoneInfo> m_boneInfoMap;
+        uint m_boneCounter = 0;
+
+        void loadBoneWeightForVertices(std::vector<ffVertex>& _vertexArr,aiMesh* _pMesh,const aiScene* _pScene);
+        void setVertexBoneData(ffVertex& _vertex,int _boneID,float weight);
+
+        /*----骨骼动画结束------*/
 		void loadModel(std::string _path);
 		void processNode(aiNode * _node , const aiScene * _scene);
 		ffMesh processMesh(aiMesh* _mesh, const aiScene* _scene);

@@ -40,7 +40,7 @@ namespace FF{
             //使用ffAssimpHelper定义好的转换，assimp转换为glm数据
             //实例化结构并赋值位置与时间戳，位置需要从Assimp的数据格式转换为glm的数据格式
             ffKeyRotation _data;
-            _data.m_rotation = ffAssimpHelper::getGLMVec3(_aiQuat);
+            _data.m_rotation = ffAssimpHelper::getGLMQuat(_aiQuat);
             _data.timeStamp = _timeStamp;
             //将位置关键帧数据存放值 位置关键帧数据数组中
             m_rotationArr.push_back(_data);
@@ -60,8 +60,14 @@ namespace FF{
         }
     }
 
+    //核心函数，用于更新变换矩阵
     void ffBone::update(float _time) {
+        glm::mat4 _translation = this->interpolatePosition(_time);
+        glm::mat4 _rotation = this->interpolateRotation(_time);
+        glm::mat4 _scale = this->interpolateScale(_time);
 
+        //更新localTransform，localTransform是相对于自己父坐标系的变换
+        m_localTransform = _translation * _rotation * _scale;
     }
 
     //通过nextTime与lastTime来找到curTime的对应的值的占比
@@ -71,20 +77,80 @@ namespace FF{
         return (_curTime - _lastTime)/(_nextTime - _lastTime);
     }
 
-    //根据时间来得到插值
-    glm::vec4 ffBone::interpolatePosition(float _time) {
-        if(){
-
+    //根据时间来得到位置矩阵插值
+    glm::mat4 ffBone::interpolatePosition(float _time) {
+        if(!m_positionArr.size()){
+            return glm::mat4(1.0f);
         }
-        return glm::vec4();
+        if(m_positionArr.size() == 1){
+            return glm::translate(glm::mat4(1.0f),m_positionArr[0].m_position);
+            //返回移动到目标位置的矩阵
+        }
+        //找到当前帧的上一帧与下一帧
+        uint _lastIndex = this->getPositionIndexByTime(_time);
+        uint _nextIndex = _lastIndex + 1;
+        //插值系数
+        float factor = this->getLerpFactor(m_positionArr[_lastIndex].timeStamp,
+                                           m_positionArr[_nextIndex].timeStamp,
+                                           _time
+                                           );
+        //插值计算
+        glm::vec3 _result = glm::mix(m_positionArr[_lastIndex].m_position,
+                                     m_positionArr[_nextIndex].m_position,
+                                     factor
+                                     );
+        //x = lastx + factor * (nextX - lastX);
+
+        return glm::translate(glm::mat4(1.0f),_result);//返回一个过渡到目标位置的平移变换矩阵
     }
 
-    glm::vec4 ffBone::interpolateRotation(float _time) {
-        return glm::vec4();
+    glm::mat4 ffBone::interpolateRotation(float _time) {
+        if(!m_rotationArr.size()){
+            return glm::mat4(1.0f);
+        }
+        if(m_rotationArr.size() == 1){
+            glm::quat _quat = m_rotationArr[0].m_rotation;
+            return glm::mat4_cast(_quat);//将quat转换为mat4
+        }
+        uint _lastIndex = this->getRotationIndexByTime(_time);
+        uint _nextIndex = _lastIndex + 1;
+
+        float _factor = this->getLerpFactor(m_rotationArr[_lastIndex].timeStamp,
+                                           m_rotationArr[_nextIndex].timeStamp,
+                                           _time
+                                           );
+        //四元数在glm中用quat表示,计算四元数插值用slerp()
+        glm::quat _result = glm::slerp(m_rotationArr[_lastIndex].m_rotation,
+                                       m_rotationArr[_nextIndex].m_rotation,
+                                       _factor
+                                       );
+
+
+        return glm::mat4_cast(_result);
     }
 
-    glm::vec4 ffBone::interpolateScale(float _time) {
-        return glm::vec4();
+    glm::mat4 ffBone::interpolateScale(float _time) {
+        if(!m_scaleArr.size()){
+            return glm::mat4(1.0f);
+        }
+        if(m_scaleArr.size() == 1){
+            return glm::translate(glm::mat4(1.0f),m_scaleArr[0].m_scale);
+        }
+        //找到当前时间的上一帧与下一帧
+        uint _lastIndex = this->getScaleIndexByTime(_time);
+        uint _nextIndex = _lastIndex + 1;
+        //计算插值系数
+        float _factor = this->getLerpFactor(m_scaleArr[_lastIndex].timeStamp,
+                                            m_scaleArr[_nextIndex].timeStamp,
+                                            _time
+                                            );
+
+        //计算插值
+        glm::vec3 _result = glm::mix(m_scaleArr[_lastIndex].m_scale,
+                                     m_scaleArr[_nextIndex].m_scale,
+                                     _factor
+                                     );
+        return glm::translate(glm::mat4(1.0f),_result);
     }
 
     //找到当前时间前面的关键帧lastTime

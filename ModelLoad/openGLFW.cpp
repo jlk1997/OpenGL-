@@ -137,7 +137,7 @@ int main()
     _camera.lookAt(glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 1.0f, 0.0f));
     _camera.setSpeed(0.05f);
      
-    _model = new FF::ffModel("../ModelLoad/res/ren/test.fbx");
+    _model = new FF::ffModel("../ModelLoad/res/ren/看表贴图.fbx");
     initShader();
  
     while (!glfwWindowShouldClose(window))

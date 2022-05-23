@@ -25,7 +25,10 @@ link_libraries(${ASSIMP})
 
 # 执行编译命令
 
-add_executable(Model ModelLoad/openGLFW.cpp glad.c ModelLoad/Camera.cpp ModelLoad/ffImage.cpp ModelLoad/ffMesh.cpp ModelLoad/ffModel.cpp ModelLoad/Shader.cpp ModelLoad/ffBone.cpp)
+add_executable(Model ModelLoad/openGLFW.cpp glad.c
+        ModelLoad/Camera.cpp ModelLoad/ffAnimation.cpp
+        ModelLoad/ffImage.cpp ModelLoad/ffMesh.cpp ModelLoad/ffModel.cpp
+        ModelLoad/Shader.cpp ModelLoad/ffBone.cpp ModelLoad/ffAnimator.cpp)
 
 find_package(assimp REQUIRED) # 添加assimp
 

@@ -93,6 +93,13 @@ build CMakeFiles/Model.dir/ModelLoad/Camera.cpp.o: CXX_COMPILER__Model_Debug /Us
   OBJECT_DIR = CMakeFiles/Model.dir
   OBJECT_FILE_DIR = CMakeFiles/Model.dir/ModelLoad
 
+build CMakeFiles/Model.dir/ModelLoad/ffAnimation.cpp.o: CXX_COMPILER__Model_Debug /Users/jianglikai/CLionProjects/MODEL/ModelLoad/ffAnimation.cpp || cmake_object_order_depends_target_Model
+  DEP_FILE = CMakeFiles/Model.dir/ModelLoad/ffAnimation.cpp.o.d
+  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -mmacosx-version-min=12.1 -std=gnu++14
+  INCLUDES = -I/usr/local/Cellar/glew/2.2.0_1/include/GL -I/usr/local/Cellar/glfw/3.3.6/include/GLFW -I/usr/local/include/glad -I/usr/local/include/KHR -I/usr/local/Cellar/freeglut/3.2.1_1/include/GL -isystem /usr/local/include
+  OBJECT_DIR = CMakeFiles/Model.dir
+  OBJECT_FILE_DIR = CMakeFiles/Model.dir/ModelLoad
+
 build CMakeFiles/Model.dir/ModelLoad/ffImage.cpp.o: CXX_COMPILER__Model_Debug /Users/jianglikai/CLionProjects/MODEL/ModelLoad/ffImage.cpp || cmake_object_order_depends_target_Model
   DEP_FILE = CMakeFiles/Model.dir/ModelLoad/ffImage.cpp.o.d
   FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -mmacosx-version-min=12.1 -std=gnu++14
@@ -128,6 +135,13 @@ build CMakeFiles/Model.dir/ModelLoad/ffBone.cpp.o: CXX_COMPILER__Model_Debug /Us
   OBJECT_DIR = CMakeFiles/Model.dir
   OBJECT_FILE_DIR = CMakeFiles/Model.dir/ModelLoad
 
+build CMakeFiles/Model.dir/ModelLoad/ffAnimator.cpp.o: CXX_COMPILER__Model_Debug /Users/jianglikai/CLionProjects/MODEL/ModelLoad/ffAnimator.cpp || cmake_object_order_depends_target_Model
+  DEP_FILE = CMakeFiles/Model.dir/ModelLoad/ffAnimator.cpp.o.d
+  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -mmacosx-version-min=12.1 -std=gnu++14
+  INCLUDES = -I/usr/local/Cellar/glew/2.2.0_1/include/GL -I/usr/local/Cellar/glfw/3.3.6/include/GLFW -I/usr/local/include/glad -I/usr/local/include/KHR -I/usr/local/Cellar/freeglut/3.2.1_1/include/GL -isystem /usr/local/include
+  OBJECT_DIR = CMakeFiles/Model.dir
+  OBJECT_FILE_DIR = CMakeFiles/Model.dir/ModelLoad
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Model
@@ -136,7 +150,7 @@ build CMakeFiles/Model.dir/ModelLoad/ffBone.cpp.o: CXX_COMPILER__Model_Debug /Us
 #############################################
 # Link the executable Model
 
-build Model: CXX_EXECUTABLE_LINKER__Model_Debug CMakeFiles/Model.dir/ModelLoad/openGLFW.cpp.o CMakeFiles/Model.dir/glad.c.o CMakeFiles/Model.dir/ModelLoad/Camera.cpp.o CMakeFiles/Model.dir/ModelLoad/ffImage.cpp.o CMakeFiles/Model.dir/ModelLoad/ffMesh.cpp.o CMakeFiles/Model.dir/ModelLoad/ffModel.cpp.o CMakeFiles/Model.dir/ModelLoad/Shader.cpp.o CMakeFiles/Model.dir/ModelLoad/ffBone.cpp.o | /usr/local/Cellar/glfw/3.3.6/lib/libglfw.3.dylib /usr/local/Cellar/assimp/5.1.2/lib/libassimp.5.1.0.dylib /usr/local/lib/libassimp.5.1.0.dylib /Library/Developer/CommandLineTools/SDKs/MacOSX12.sdk/usr/lib/libz.tbd
+build Model: CXX_EXECUTABLE_LINKER__Model_Debug CMakeFiles/Model.dir/ModelLoad/openGLFW.cpp.o CMakeFiles/Model.dir/glad.c.o CMakeFiles/Model.dir/ModelLoad/Camera.cpp.o CMakeFiles/Model.dir/ModelLoad/ffAnimation.cpp.o CMakeFiles/Model.dir/ModelLoad/ffImage.cpp.o CMakeFiles/Model.dir/ModelLoad/ffMesh.cpp.o CMakeFiles/Model.dir/ModelLoad/ffModel.cpp.o CMakeFiles/Model.dir/ModelLoad/Shader.cpp.o CMakeFiles/Model.dir/ModelLoad/ffBone.cpp.o CMakeFiles/Model.dir/ModelLoad/ffAnimator.cpp.o | /usr/local/Cellar/glfw/3.3.6/lib/libglfw.3.dylib /usr/local/Cellar/assimp/5.1.2/lib/libassimp.5.1.0.dylib /usr/local/lib/libassimp.5.1.0.dylib /Library/Developer/CommandLineTools/SDKs/MacOSX12.sdk/usr/lib/libz.tbd
   FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -mmacosx-version-min=12.1
   LINK_LIBRARIES = -Wl,-rpath,/usr/local/lib  /usr/local/Cellar/glfw/3.3.6/lib/libglfw.3.dylib  /usr/local/Cellar/assimp/5.1.2/lib/libassimp.5.1.0.dylib  -framework OpenGL  -framework GLUT  /usr/local/lib/libassimp.5.1.0.dylib  /Library/Developer/CommandLineTools/SDKs/MacOSX12.sdk/usr/lib/libz.tbd
   OBJECT_DIR = CMakeFiles/Model.dir

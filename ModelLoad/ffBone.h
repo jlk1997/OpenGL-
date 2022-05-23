@@ -24,6 +24,13 @@ namespace FF{
          float timeStamp;
     };
 
+    //用于存储offsetMatrix
+    struct ffBoneInfo{
+        uint m_id;
+        glm::mat4 m_offsetMatrix;
+        ffBoneInfo():m_id(0),m_offsetMatrix(1.0f){};
+    };
+
     class ffBone {
     private:
         std::vector<ffKeyPosition> m_positionArr;//vector数组，元素类型是ffKeyPosition
@@ -39,7 +46,9 @@ namespace FF{
         ~ffBone();
 
         //每个bone自己的animatiob
+        //initAnimation将三个关键帧Vector Array进行填充，通过遍历节点的三个关键帧类型数组的mValue和mTime
         void initAnimation(const aiNodeAnim* channel);
+        //update用于更新m_localTransform的值，局部变换。
         void update(float _time);
 
         glm::mat4 getLocalTransform(){ return m_localTransform; }
@@ -49,9 +58,9 @@ namespace FF{
         //知道前后两个关键帧，就可以知道当前帧对应的值，用插值计算公式
         float getLerpFactor(float _lastTime,float _nextTime,float _curTime);
         //根据传入的时间得到一个平移后的插值矩阵
-        glm::vec4 interpolatePosition(float _time);
-        glm::vec4 interpolateRotation(float _time);
-        glm::vec4 interpolateScale(float _time);
+        glm::mat4 interpolatePosition(float _time);
+        glm::mat4 interpolateRotation(float _time);
+        glm::mat4 interpolateScale(float _time);
 
         //获取到前一个位置,旋转，缩放 关键帧
         uint getPositionIndexByTime(float _time);

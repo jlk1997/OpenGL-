@@ -32,19 +32,19 @@
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 34,
+				"line" : 37,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 35,
+				"line" : 38,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 36,
+				"line" : 39,
 				"parent" : 0
 			},
 			{
@@ -118,7 +118,9 @@
 				4,
 				5,
 				6,
-				7
+				7,
+				8,
+				9
 			]
 		},
 		{
@@ -232,7 +234,9 @@
 				4,
 				5,
 				6,
-				7
+				7,
+				8,
+				9
 			]
 		}
 	],
@@ -254,6 +258,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "ModelLoad/Camera.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "ModelLoad/ffAnimation.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -284,6 +294,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "ModelLoad/ffBone.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "ModelLoad/ffAnimator.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

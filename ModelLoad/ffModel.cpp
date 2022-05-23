@@ -19,7 +19,7 @@ namespace FF
 	}
 
     //processNode是递归调用的，最终会把传入的节点的所有字节点进行遍历并存入vector中
-	void ffModel::processNode(aiNode* _node, const aiScene* _scene)
+	void ffModel::processNode(aiNode* _node,const aiScene* _scene)
 	{
 		for (uint i = 0; i < _node->mNumMeshes; i++)
 		{
@@ -95,8 +95,9 @@ namespace FF
 			std::vector<ffTexture> _specularVec = loadMaterialTextures(_mat, aiTextureType_SPECULAR, TEXTURE_SPECULAR_STR, _scene);
 			_texVec.insert(_texVec.end(), _specularVec.begin(), _specularVec.end());
 		}
+        //解析mesh为基础的骨骼
 
-
+        loadBoneWeightForVertices(_vertexVec,_mesh,_scene);
 		return ffMesh(_vertexVec, _indexVec, _texVec);
 	}
 
@@ -138,10 +139,54 @@ namespace FF
 			m_meshVec[i].draw(_shader);
 		}
 	}
+    //为每一个vertice都去读取它的weight等属性
+    void ffModel::loadBoneWeightForVertices(std::vector<ffVertex> &_vertexArr, aiMesh *_pMesh,const aiScene *_pScene) {
+        for(uint _boneIndex = 0;_boneIndex < _pMesh->mNumBones;_boneIndex++){
+            int _boneID = -1;//用于记录当前遍历的这一根骨骼的ID
+            std::string _boneName = _pMesh->mBones[_boneIndex]->mName.C_Str();
+            //建设boneInfo for offsetMatrix
+            if(m_boneInfoMap.find(_boneName) == m_boneInfoMap.end()){
+                ffBoneInfo _boneInfo;//用自己的结构来读取assimp提供的数据
+                _boneInfo.m_id = m_boneCounter;
+                _boneInfo.m_offsetMatrix = ffAssimpHelper::getGLMMat4(_pMesh->mBones[_boneIndex]->mOffsetMatrix);
+                m_boneInfoMap[_boneName] = _boneInfo;//赋值给map
+                _boneID = m_boneCounter;
+                m_boneCounter++;
+            }else{
+                _boneID = m_boneInfoMap[_boneName].m_id;
+            }
 
-	
+            assert(_boneID!=-1);//条件为真时程序继续执行，条件为假时程序跳出终止
 
-	SINGLE_INSTANCE_SET(ffTextureMananger)
+            //读取顶点权重
+            //每根骨头都会有自己的权重数组
+            aiVertexWeight* _pWeight = _pMesh->mBones[_boneIndex]->mWeights;
+            uint _weightNum = _pMesh->mBones[_boneIndex]->mNumWeights;//每根骨头会影响到多少个顶点
+
+            for(uint _weightIndex = 0;_weightIndex < _weightNum;_weightIndex++){
+                int _vertexID = _pWeight[_weightIndex].mVertexId;
+                float _vertexWeight = _pWeight[_weightIndex].mWeight;
+
+                assert(_vertexID < _vertexArr.size());
+
+                setVertexBoneData(_vertexArr[_vertexID],_boneID,_vertexWeight);
+            }
+
+        }
+    }
+
+    void ffModel::setVertexBoneData(ffVertex& _vertex,int _boneID,float _weight) {
+        for(uint i = 0;i < MAX_BONE_WEIGHTS;i++){
+            if(_vertex.m_boneIdArr[i]<0){
+                _vertex.m_boneWeightArr[i] = _weight;
+                _vertex.m_boneIdArr[i] = _boneID;
+                break;
+            }
+        }
+    }
+
+
+    SINGLE_INSTANCE_SET(ffTextureMananger)
 
 	uint ffTextureMananger::createTexture(std::string _path)
 	{
